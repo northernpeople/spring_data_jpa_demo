@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.jpa_demo_todai.model.Business;
 import com.example.jpa_demo_todai.model.BusinessRepo;
+import com.example.jpa_demo_todai.model.BusinessService;
+import com.example.jpa_demo_todai.model.User;
 
 @SpringBootTest
 class JpaDemoTodaiApplicationTests {
@@ -14,15 +16,21 @@ class JpaDemoTodaiApplicationTests {
 	@Autowired
 	BusinessRepo repo;
 	
+	@Autowired
+	BusinessService service;
+
+
 	
 	@Test
-	public void shouldStoreBusiness() {
-		Business b = new Business().setName("business1");
+	public void shouldAssingEmployeeToBusiness() {
+		Business b = service.createBusiness("Business");
+		User u = service.createUser("John");
 		
-		repo.save(b);
+		b = service.assignEmployeeTo(b, u);
 		
-		System.out.println("\nall businesses: ");
-		repo.findAll().stream().forEach(System.out::println);
+		Business freshFromDB = repo.findById(b.getId()).get();
+		freshFromDB.printUsers();
+		
 	}
 
 }
