@@ -30,16 +30,7 @@ public class Business {
 	
 	String name;
 	
-	
-	@OneToMany(mappedBy="employer")
-	Set<User> employees = new HashSet<>();
-	
-	public void printUsers() {
-		for(User u : employees) {
-			System.out.println(u.getName());
-		}
-	}
-	
+
 	@PrePersist
 	public void initId() {
 		this.id = UUID.randomUUID().toString();
