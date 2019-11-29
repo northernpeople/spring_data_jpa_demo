@@ -2,6 +2,7 @@ package com.example.jpa_demo_todai.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Accessors(chain=true)
 @Entity
-@ToString
+@ToString(exclude= {"employer"})
 public class User {
 	
 	@Id
@@ -25,6 +26,14 @@ public class User {
 	
 	
 	String name;
+	
+	
+	@ManyToOne
+	Business employer;
+	
+	public void printBusiness() {
+		System.out.println(employer);
+	}
 	
 	
 	@PrePersist

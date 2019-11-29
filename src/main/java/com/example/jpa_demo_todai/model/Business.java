@@ -31,7 +31,7 @@ public class Business {
 	String name;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="employer")
 	Set<User> employees = new HashSet<>();
 	
 	public void printUsers() {

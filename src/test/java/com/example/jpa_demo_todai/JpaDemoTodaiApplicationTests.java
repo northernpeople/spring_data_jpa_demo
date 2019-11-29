@@ -24,13 +24,22 @@ class JpaDemoTodaiApplicationTests {
 	@Test
 	public void shouldAssingEmployeeToBusiness() {
 		Business b = service.createBusiness("Business");
-		User u = service.createUser("John");
+		User u  = service.createUser("John");
+		User u2 = service.createUser("Johnman");
 		
 		b = service.assignEmployeeTo(b, u);
+		b = service.assignEmployeeTo(b, u2);
 		
-		Business freshFromDB = repo.findById(b.getId()).get();
-		freshFromDB.printUsers();
+		service.printUsersOf(b.getId());
 		
+	}
+	
+	
+	@Test
+	public void shouldFetchBusinessWithUsers() {
+		Business b = service.createBusiness("Business");
+
+		System.out.println(repo.findByIdWithEmployees(b.getId()));
 	}
 
 }
