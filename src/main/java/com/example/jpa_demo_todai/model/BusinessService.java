@@ -1,5 +1,7 @@
 package com.example.jpa_demo_todai.model;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -21,6 +23,14 @@ public class BusinessService {
 		
 		return businessRepo.save(b);
 		
+	}
+
+
+
+
+	public Optional<Business> findById(String businessId) {
+		
+		return businessRepo.findById(businessId);
 	}
 	
 	
